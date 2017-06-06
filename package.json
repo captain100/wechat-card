@@ -1,0 +1,15 @@
+{
+  "name": "wechat-card",
+  "version": "1.0.0",
+  "description": "微信卡券公用包",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "qiushi",
+  "license": "ISC",
+  "dependencies": {
+    "promise": "^7.1.1",
+    "request": "^2.81.0"
+  }
+}
