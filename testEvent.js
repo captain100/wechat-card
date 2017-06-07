@@ -13,6 +13,9 @@ api.post('/', async (ctx, next) => {
   ctx.status =200
 })
 
+api.get('/home', async(ctx, next) => {
+
+})
 
 module.exports = api
 

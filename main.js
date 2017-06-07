@@ -7,12 +7,12 @@ WeChatCard.setConfig({
 })
 
 // 三方授权 access_token
-// WeChatCard.setConfig({
-//   accessTokenService: {
-//     "access_token": "yLI3kxxjO_VMtpHzuWt9veMdizk5Tai1xpyVG8YTAySPWhbuova8RsHTuKAKENdjqVOHfCWdx_E-utxBu0R4l2AlbxGlamRWRXawysELO4l_kc_ZmxSCB0oroQSiyKRYUUOfAAAPPJ",
-//     "expires_in": 7199
-//   }
-// })
+WeChatCard.setConfig({
+  accessTokenService: {
+    "access_token": "yLI3kxxjO_VMtpHzuWt9veMdizk5Tai1xpyVG8YTAySPWhbuova8RsHTuKAKENdjqVOHfCWdx_E-utxBu0R4l2AlbxGlamRWRXawysELO4l_kc_ZmxSCB0oroQSiyKRYUUOfAAAPPJ",
+    "expires_in": 7199
+  }
+})
 
 
 
@@ -101,15 +101,15 @@ let cardinfo = {
 }
 
 // 测试创建 卡券
-// WeChatCard.card.createCard(cardinfo)
-//   .then(success => console.log('创建卡券成功', success))
-//   .catch(e => console.log('创建卡券失败', e))
+WeChatCard.card.createCard(cardinfo)
+  .then(success => console.log('创建卡券成功', success))
+  .catch(e => console.log('创建卡券失败', e))
 
 // 查询单个卡券信息 
-// WeChatCard.card.getCardDetail('phrZTw2bjrQo60ArLXib0BwiEuAE')
-//   .then(cardinfo => {
-//     console.log('卡券详情', cardinfo)
-//   }).catch(e => console.log('查询失败', e))
+WeChatCard.card.getCardDetail('phrZTw2bjrQo60ArLXib0BwiEuAE')
+  .then(cardinfo => {
+    console.log('卡券详情', cardinfo)
+  }).catch(e => console.log('查询失败', e))
 
 // 批量查询卡券状态
 WeChatCard.card.batchGetCard(0, 10, [])
@@ -203,15 +203,14 @@ const updateCard = {
 
 
 // 修改卡券信息
-// WeChatCard.card.modifyCard(updateCard)
-//   .then(result => console.log('修改成功', result))
-//   .catch(e => console.log('修改失败', e))
+WeChatCard.card.modifyCard(updateCard)
+  .then(result => console.log('修改成功', result))
+  .catch(e => console.log('修改失败', e))
 
 // 删除卡券
-// WeChatCard.card.deleteCard('phrZTw-QikDfzbJyAz7xpPcQqgpU')
-//   .then(success => console.log('删除成功', success))
-//   .catch(e => console.log('删除失败', e))
-
+WeChatCard.card.deleteCard('phrZTw-QikDfzbJyAz7xpPcQqgpU')
+  .then(success => console.log('删除成功', success))
+  .catch(e => console.log('删除失败', e))
 
 // 增加库存
 WeChatCard.card.modifyCardStock('phrZTw8aEMrgEPI9g9DCfP-NvPRQ', 100)
