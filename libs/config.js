@@ -1,7 +1,5 @@
 // 引入请求
 const request = require('request')
-// const Promise = require('promise')
-const fetch = require('node-fetch')
 const errors = require('./utils/errors')
 
 // 封装请求微信接口
@@ -9,9 +7,19 @@ const api = {
   // BASIC
   ACCESS_TOKEN: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
   API_TICKET: 'https://api.weixin.qq.com/cgi-bin/ticket/getticket',
-  // open weixin 
+  UPLOAD_IMG: 'https://api.weixin.qq.com/cgi-bin/media/uploadimg',
+  // open weixin
+
+  // card manager
   CREATE_CARD: 'https://api.weixin.qq.com/card/create',
-  GET_CARD_CODE: 'https://api.weixin.qq.com/card/code/get'
+  GET_CARD_CODE: 'https://api.weixin.qq.com/card/code/get',
+  GET_USER_CARD_LIST: 'https://api.weixin.qq.com/card/user/getcardlist',
+  GET_CARD_DETAIL: 'https://api.weixin.qq.com/card/get',
+  BATCH_GET_CARD: 'https://api.weixin.qq.com/card/batchget',
+  MODIFY_CARD: 'https://api.weixin.qq.com/card/update',
+  DELETE_CARD: 'https://api.weixin.qq.com/card/delete',
+  MODIFY_CARD_STOCK: 'https://api.weixin.qq.com/card/modifystock'
+
 }
 
 // 单个应用配置
@@ -89,8 +97,10 @@ const getAccessToken = () => {
   }
   // get access_token from wechat server or 第三方平台
   if (config._token) {
+
     if (privateConfig.access_token.cred && isNotExpire("access_token")) {
-      return returnsFunc({ access_token: privateConfig.config.cred }, false)
+      console.log('缓存的privateConfig ' + privateConfig.access_token.cred)
+      return Promise.resolve(returnsFunc({ access_token: privateConfig.access_token.cred }, false))
     }
     let accessTokenUrl = `${api.ACCESS_TOKEN}&appid=${config.appId}&secret=${config.appSecret}`
     return new Promise((resolve, reject) => {
@@ -102,7 +112,7 @@ const getAccessToken = () => {
         if (error) {
           return reject(error)
         }
-
+        console.log('新的请求' + body)
         return resolve(returnsFunc(body, true))
       })
     })

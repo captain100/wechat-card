@@ -10,11 +10,12 @@ var error = require("./errors");
 exports.post = (api, options) => {
   return new Promise((resolve, reject) => {
     // 返回带有access_token 的请求地址
-   return config.getUrl(api, (err, url) => {
+    return config.getUrl(api, (err, url) => {
       // get access token error
       if (err) {
         return reject(error.REQUEST_ERROR(err))
       }
+      console.log('请求地址 ：' + url)
       return request.post(url, options, (reqErr, res, body) => {
         // request error
         if (reqErr) {

@@ -1,0 +1,16 @@
+const request = require('../utils/request')
+const config = require('../config')
+const errors = require('../utils/errors')
+
+/**
+ * 开发者需调用该接口上传商户图标至微信服务器，获取相应logo_url/icon_list/image_url，用于卡券创建。
+ * 开发者注意事项
+ *    1.上传的图片限制文件大小限制1MB，仅支持JPG、PNG格式。
+ *    2.调用接口获取图片url仅支持在微信相关业务下使用。
+ * @param
+ */
+exports.uploadimg = (data) => {
+  request.post(config.api.UPLOAD_IMG, {
+    formData: { buffer: data }
+  })
+}
