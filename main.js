@@ -1,18 +1,18 @@
 const WeChatCard = require('./index')
-
+const fs = require('fs')
 // 初试化设置
-// WeChatCard.setConfig({
-//   appId: 'wx577c00556617b6e6',
-//   appSecret: 'e7578f5d676a280fda1925b077968505'
-// })
+WeChatCard.setConfig({
+  appId: 'wx577c00556617b6e6',
+  appSecret: 'e7578f5d676a280fda1925b077968505'
+})
 
 // 三方授权 access_token
-WeChatCard.setConfig({
-  accessTokenService: {
-    "access_token": "yLI3kxxjO_VMtpHzuWt9veMdizk5Tai1xpyVG8YTAySPWhbuova8RsHTuKAKENdjqVOHfCWdx_E-utxBu0R4l2AlbxGlamRWRXawysELO4l_kc_ZmxSCB0oroQSiyKRYUUOfAAAPPJ",
-    "expires_in": 7199
-  }
-})
+// WeChatCard.setConfig({
+//   accessTokenService: {
+//     "access_token": "yLI3kxxjO_VMtpHzuWt9veMdizk5Tai1xpyVG8YTAySPWhbuova8RsHTuKAKENdjqVOHfCWdx_E-utxBu0R4l2AlbxGlamRWRXawysELO4l_kc_ZmxSCB0oroQSiyKRYUUOfAAAPPJ",
+//     "expires_in": 7199
+//   }
+// })
 
 
 
@@ -223,4 +223,14 @@ WeChatCard.card.modifyCardStock('phrZTw8aEMrgEPI9g9DCfP', -1)
   .then(result => console.log('修改成功', result))
   .catch(e => console.log('修改失败', e))
 
+// 上传图片
+fs.readFile('./123.png', (err, originBuffer) => {
+  console.log(Buffer.isBuffer(originBuffer))
+  console.log(originBuffer)
+  return WeChatCard.basic.uploadimg(originBuffer)
+    .then(result => console.log('上传成功', result))
+    .catch(e => console.log('上传失败', e))
+})
 
+// 得到颜色值
+WeChatCard.basic.getColorList().then(result => console.log(result))

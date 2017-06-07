@@ -9,6 +9,12 @@
   "author": "qiushi",
   "license": "ISC",
   "dependencies": {
+    "kcors": "^2.2.1",
+    "koa": "^2.2.0",
+    "koa-bodyparser": "^4.2.0",
+    "koa-router": "^7.2.0",
+    "koa-xml": "^1.0.2",
+    "koa-xml-body": "^2.0.0",
     "promise": "^7.1.1",
     "request": "^2.81.0"
   }

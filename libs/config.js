@@ -8,6 +8,7 @@ const api = {
   ACCESS_TOKEN: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
   API_TICKET: 'https://api.weixin.qq.com/cgi-bin/ticket/getticket',
   UPLOAD_IMG: 'https://api.weixin.qq.com/cgi-bin/media/uploadimg',
+  COLORS: "https://api.weixin.qq.com/card/getcolors",
   // open weixin
 
   // card manager
@@ -99,7 +100,6 @@ const getAccessToken = () => {
   if (config._token) {
 
     if (privateConfig.access_token.cred && isNotExpire("access_token")) {
-      console.log('缓存的privateConfig ' + privateConfig.access_token.cred)
       return Promise.resolve(returnsFunc({ access_token: privateConfig.access_token.cred }, false))
     }
     let accessTokenUrl = `${api.ACCESS_TOKEN}&appid=${config.appId}&secret=${config.appSecret}`
@@ -112,7 +112,6 @@ const getAccessToken = () => {
         if (error) {
           return reject(error)
         }
-        console.log('新的请求' + body)
         return resolve(returnsFunc(body, true))
       })
     })

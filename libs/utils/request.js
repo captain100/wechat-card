@@ -15,7 +15,7 @@ exports.post = (api, options) => {
       if (err) {
         return reject(error.REQUEST_ERROR(err))
       }
-      console.log('请求地址 ：' + url)
+      // console.log('请求地址 ：' + url)
       return request.post(url, options, (reqErr, res, body) => {
         // request error
         if (reqErr) {
@@ -33,7 +33,7 @@ exports.post = (api, options) => {
 }
 
 exports.get = (api) => {
-  new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     config.getUrl(api, (err, url) => {
       // get access token error
       if (err) {
@@ -55,5 +55,4 @@ exports.get = (api) => {
       });
     });
   })
-
 };
