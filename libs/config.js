@@ -8,7 +8,8 @@ const api = {
   ACCESS_TOKEN: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential',
   API_TICKET: 'https://api.weixin.qq.com/cgi-bin/ticket/getticket',
   UPLOAD_IMG: 'https://api.weixin.qq.com/cgi-bin/media/uploadimg',
-  COLORS: "https://api.weixin.qq.com/card/getcolors",
+  COLORS: 'https://api.weixin.qq.com/card/getcolors',
+  SET_TEST_WHITE_LIST: 'https://api.weixin.qq.com/card/testwhitelist/set',
   // open weixin
 
   // card manager
@@ -19,7 +20,11 @@ const api = {
   BATCH_GET_CARD: 'https://api.weixin.qq.com/card/batchget',
   MODIFY_CARD: 'https://api.weixin.qq.com/card/update',
   DELETE_CARD: 'https://api.weixin.qq.com/card/delete',
-  MODIFY_CARD_STOCK: 'https://api.weixin.qq.com/card/modifystock'
+  MODIFY_CARD_STOCK: 'https://api.weixin.qq.com/card/modifystock',
+
+  // member card
+  GET_MEMBER_INFO: 'https://api.weixin.qq.com/card/membercard/userinfo/get',
+
 
 }
 

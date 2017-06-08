@@ -34,7 +34,7 @@ exports.post = (api, options) => {
 
 exports.get = (api) => {
   return new Promise((resolve, reject) => {
-    config.getUrl(api, (err, url) => {
+    return config.getUrl(api, (err, url) => {
       // get access token error
       if (err) {
         return reject(err);
@@ -56,3 +56,26 @@ exports.get = (api) => {
     });
   })
 };
+
+exports.postMedia = (api, options) => {
+  return new Promise((reslove, reject) => {
+    return config.getUrl(api, (err, url) => {
+      url = url + '&type=image'
+      const data = Object.assign({}, { url }, options)
+      console.log(data)
+      return request(data, (reqErr, res, body) => {
+        // request error
+        if (reqErr) {
+          return reject(error.REQUEST_ERROR(err));
+        }
+        const result = JSON.parse(body);
+
+        // wechat interface error
+        if (result.errcode != 0) {
+          return reject(error.INTERFACE_ERROR(result));
+        }
+        return resolve(result);
+      })
+    })
+  })
+}

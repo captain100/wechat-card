@@ -4,7 +4,7 @@ const errors = require('../utils/errors')
 
 
 /**
- * 创建卡片              creatCard
+ * 创建卡片              createCard
  * 查询code             getCardCode
  * 查询用户微信卡包list   getUserCardList
  * 查看卡券详情           getCardDetail
@@ -110,13 +110,14 @@ exports.createCard = (card) => {
       }
       break;
     case 'MEMBER_CARD':
-      const memberCard = card.memberCard || {}
+      const memberCard = card.member_card || {}
       card_data = {
+        card_type,
         'member_card': Object.assign({}, { base_info }, { advanced_info }, memberCard)
       }
       break;
   }
-  // console.log(card_data)
+  console.log(card_data)
   // 创建卡券
   return request.post(config.api.CREATE_CARD, {
     form: JSON.stringify({ card: card_data })

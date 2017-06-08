@@ -9,6 +9,7 @@
   "author": "qiushi",
   "license": "ISC",
   "dependencies": {
+    "formstream": "^1.1.0",
     "kcors": "^2.2.1",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.2.0",
