@@ -58,22 +58,18 @@ exports.get = (api) => {
 };
 
 exports.postMedia = (api, options) => {
-  return new Promise((reslove, reject) => {
+  return new Promise((resolve, reject) => {
     return config.getUrl(api, (err, url) => {
       url = url + '&type=image'
       const data = Object.assign({}, { url }, options)
-      console.log(data)
-      return request(data, (reqErr, res, body) => {
+
+      return request.post(data, (reqErr, res, body) => {
         // request error
         if (reqErr) {
-          return reject(error.REQUEST_ERROR(err));
+          return reject(error.REQUEST_ERROR(reqErr));
         }
         const result = JSON.parse(body);
-
-        // wechat interface error
-        if (result.errcode != 0) {
-          return reject(error.INTERFACE_ERROR(result));
-        }
+        
         return resolve(result);
       })
     })

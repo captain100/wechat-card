@@ -13,28 +13,14 @@ const formstream = require('formstream')
  * @param 
  */
 exports.uploadimg = (filepath) => {
-  const formPromise = new Promise((resolve, reject) => {
-    return fs.stat(filepath, (err, data) => {
-      if (err) {
-        return reject(errors.FILE_PATH_ERROR(err))
-      }
-      var form = formstream()
-      form.file('media', filepath, path.basename(filepath), data.size)
-      return resolve(form)
-
-    })
-  })
-  return formPromise.then(form => {
-    console.log(form)
-    return request.postMedia(config.api.UPLOAD_IMG, {
-      dataType: 'json',
-      type: 'POST',
-      timeout: 60000, // 60秒超时
-      headers: form.headers(),
-      stream: form
-    })
+  return request.postMedia(config.api.UPLOAD_IMG, {
+    formData: {
+      buffer: fs.createReadStream(path.basename(filepath))
+    }
   })
 }
+
+
 /**
  * get wechat card colors (获取创建卡券允许使用的颜色列表)
  */
