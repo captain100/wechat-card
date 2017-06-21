@@ -1,9 +1,18 @@
 const WeChatCard = require('../index')
 const _config = require('../libs/config')
 WeChatCard.setConfig({
-  appId: 'wx7003da87224dd76a',
-  appSecret: 'c52a86f5511bd26cee0bed8e81119d97'
+  appId: 'wx66e59f0e402601f3',
+  appSecret: '184897070ca93a0e563cb6b79962a98c'
 })
+
+// 小云笔记
+//  appId: 'wxb4fb29266130bb85',
+//  appSecret: '675f1cd7edfcaba17b987c44c83e0a6b'
+
+// 李浩公众号
+// wx7003da87224dd76a
+// c52a86f5511bd26cee0bed8e81119d97
+
 let memberCardInfo = {
   "card_type": "MEMBER_CARD",
   "base_info": {
@@ -81,13 +90,12 @@ let memberCardInfo = {
     "supply_bonus": true,
     "supply_balance": false,
     "prerogative": "test_prerogative",
-    "wx_activate": true,
-    // "auto_activate": true,
+    "auto_activate": true,
     "custom_field1": {
       "name_type": "FIELD_NAME_TYPE_LEVEL",
       "url": "http://www.qq.com"
     },
-    // "activate_url": "http://www.qq.com",
+    "activate_url": "http://www.qq.com",
     "custom_cell1": {
       "name": "使用入口2",
       "tips": "激活后显示",
@@ -107,48 +115,50 @@ let memberCardInfo = {
   }
 }
 
-// 创建会员卡
-WeChatCard.card.createCard(memberCardInfo)
-  .then(result => {
-    console.log('创建成功', result)
-    let useForm = {
-      "card_id": null,
-      "required_form": {
-        "can_modify": false,
-        "common_field_id_list": [
-          "USER_FORM_INFO_FLAG_MOBILE",
-          "USER_FORM_INFO_FLAG_SEX",
-          "USER_FORM_INFO_FLAG_IDCARD",
-          "USER_FORM_INFO_FLAG_SEX"
-        ]
-      }
-    }
-    useForm.card_id = result.card_id
-    return WeChatCard.memberCard.setActivateUserform(useForm)
-  })
-  .then(result => console.log(result))
-  .catch(e => console.log('创建失败', e))
 
-// 设置白名单
-let openid = [
-  "onmbcwHGMspGimdY7J5q3wHNVnSY", // 李浩
-  "onmbcwMC3OXkEL7QfTPpHXue3CIE",
-]
-// WeChatCard.memberCard.setTestWhiteList(openid)
-//   .then(result => console.log('设置成功', result))
-//   .catch(e => console.log('设置失败', e))
+// WeChatCard.card.createCard(memberCardInfo)
+//   .then(result => {
+//     console.log('创建成功', result)
 
-// 得到access_token
-// WeChatCard.basic.getAccessToken().then(token => console.log(token))
+//     WeChatCard.memberCard.setTestWhiteList()
+//   })
+//   .catch(e => console.log('创建失败', e))
+// WeChatCard.setConfig({
+//   appId: 'wx66e59f0e402601f3',
+//   appSecret: '184897070ca93a0e563cb6b79962a98c'
+// })
 
 
-// const ticket = _config.getTicket()
-// console.log(11111, ticket)
+// _config.getAccessToken().then(token => console.log(token))
 
-// const arr = ['123213', 'ahdshfdhas']
-// const result = WeChatCard.basic.getSignature(arr)
+// Demo数据，具体的字段含义，可以参加Wechat-Card的GITHUB或者官方文档
 
-// console.log(result)
+var shops = [{
+  "business_name": "麦当劳",
+  "branch_name": "赤岗店",
+  "province": "广东省",
+  "city": "广州市",
+  "district": "海珠区",
+  "address": "中国广东省广州市海珠区艺苑路 11 号",
+  "telephone": "020-89772059",
+  "category": "房产小区",
+  "longitude": "115.32375",
+  "latitude": "25.097486"
+}, {
+  "business_name": "麦当劳",
+  "branch_name": "珠江店",
+  "province": "广东省",
+  "city": "广州市",
+  "district": "海珠区",
+  "address": "中国广东省广州市海珠区艺苑路 12 号",
+  "telephone": "020-89772059",
+  "category": "房产小区",
+  "longitude": "113.32375",
+  "latitude": "23.097486"
+}];
 
+WeChatCard.shop.batchGetShops(0 ,20)
+  .then(list => console.log(list))
+  .catch(e => console.log(e))
 
-
+WeChatCard.delivery.paycell('1111111').then(success => console.log(success))

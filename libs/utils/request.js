@@ -62,7 +62,7 @@ exports.postMedia = (api, options) => {
     return config.getUrl(api, (err, url) => {
       url = url + '&type=image'
       const data = Object.assign({}, { url }, options)
-
+      console.log(data)
       return request.post(data, (reqErr, res, body) => {
         // request error
         if (reqErr) {

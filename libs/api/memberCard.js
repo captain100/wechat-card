@@ -30,3 +30,38 @@ exports.setTestWhiteList = (openid, username) => {
   })
 }
 
+/**
+ * 激活会员卡
+ * 激活会员卡方式： 1、接口激活 2、一键激活 3、自动激活 
+ * 
+ */
+exports.setActivate = (options) => {
+  return request.post(config.api.SET_ACTIVATE, {
+    form: JSON.stringify({ options })
+  })
+}
+
+/**
+ * 更新会员卡券细信息
+ */
+exports.updateMember = (json) => {
+  return request.post(config.api.UPDATE_MEMBER, {
+    form: JSON.stringify(json)
+  })
+}
+/**
+ * 开发者在创建时填入wx_activate字段后，需要调用该接口设置用户激活时需要填写的选项，否则一键开卡设置不生效
+ */
+exports.setActivateUserform = (json) => {
+  return request.post(config.api.SET_ACTIVATE_USERFORM, {
+    form: JSON.stringify(json)
+  })
+}
+
+
+
+
+
+
+
+

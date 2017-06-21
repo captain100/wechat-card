@@ -14,6 +14,9 @@ const errors = {
   },
   FILE_PATH_ERROR: (err) => {
     return { code: 9004, msg: `媒体文件地址错误：${err}`}
+  },
+  SIGN_DATA_CANNOT_NULL: () => {
+    return { code: 9005, msg: '没有得到签名'}    
   }
 }
 

@@ -10,6 +10,8 @@ const api = {
   UPLOAD_IMG: 'https://api.weixin.qq.com/cgi-bin/media/uploadimg',
   COLORS: 'https://api.weixin.qq.com/card/getcolors',
   SET_TEST_WHITE_LIST: 'https://api.weixin.qq.com/card/testwhitelist/set',
+  UPDATE_MEMBER: 'https://api.weixin.qq.com/card/membercard/updateuser',
+  SET_ACTIVATE_USERFORM: 'https://api.weixin.qq.com/card/membercard/activateuserform/set',
   // open weixin
 
   // card manager
@@ -24,7 +26,16 @@ const api = {
 
   // member card
   GET_MEMBER_INFO: 'https://api.weixin.qq.com/card/membercard/userinfo/get',
+  SET_ACTIVATE: 'https://api.weixin.qq.com/card/membercard/activate',
+  // delivery card
+  CREATE_QRCODE: 'https://api.weixin.qq.com/card/qrcode/create',
+  SET_PAYCELL:'https://api.weixin.qq.com/card/paycell/set',
+  SET_SELFSONSUMECELL: 'https://api.weixin.qq.com/card/selfconsumecell/set',
 
+  // shop
+  CREATE_SHOP: 'https://api.weixin.qq.com/card/location/batchadd',
+  GET_SHOP_LIST_V2: 'https://api.weixin.qq.com/cgi-bin/poi/getpoilist',
+  GET_SHOP_LIST_V1: 'https://api.weixin.qq.com/card/location/batchget'
 
 }
 
@@ -153,7 +164,7 @@ const getTicket = (type) => {
     if (isNew) {
       setPrivateConfig(type + '_ticket', { cred: token, expireTime: Date.now() })
     }
-    return Promise.resolve(ticket)
+    return token
   }
 
   // get ticket if not expire
@@ -161,16 +172,20 @@ const getTicket = (type) => {
     return returnsFunc({ ticket: privateConfig.jsapi_ticket.cred }, false)
   }
 
-  // request jsapi ticket if it expired
-  formatUrl(api.API_TICKET, function (err, url) {
-    if (err) { return Promise.reject(err); }
-    return request.get(url + "&type=" + type, function (err, res, body) {
-      if (err) {
-        return Promise.reject(err)
-      }
-      returnsFunc(body, true)
-    });
-  });
+  return new Promise((resolve, reject) => {
+    // request jsapi ticket if it expired
+    return formatUrl(api.API_TICKET, (err, url) => {
+      if (err) { return reject(err); }
+      return request.get(url + "&type=" + type, function (err, res, body) {
+        console.log(err, body)
+        if (err) {
+          return reject(err)
+        }
+        return resolve(returnsFunc(body, true))
+      });
+    })
+  })
+
 }
 
 module.exports = {

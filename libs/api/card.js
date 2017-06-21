@@ -117,7 +117,6 @@ exports.createCard = (card) => {
       }
       break;
   }
-  console.log(card_data)
   // 创建卡券
   return request.post(config.api.CREATE_CARD, {
     form: JSON.stringify({ card: card_data })
@@ -205,7 +204,6 @@ exports.modifyCard = (card) => {
       case 'GROUPON':
         const deal_detail = card.deal_detail
         updateDate = Object.assign(currentCard.groupon, base_info, advanced_info, deal_detail)
-
         break;
       // 代金券
       case 'CASH':
@@ -229,12 +227,13 @@ exports.modifyCard = (card) => {
         updateDate = Object.assign(currentCard.general_coupon, base_info, advanced_info, default_detail)
         break;
       case 'MEMBER_CARD':
-        const memberCard = card.memberCard || {}
+        const memberCard = card.member_card || {}
         updateDate = {
           'member_card': Object.assign({}, { base_info }, { advanced_info }, memberCard)
         }
         break;
     }
+    console.log(updateDate)
     return Promise.resolve(updateDate)
   }).then(updateDate => {
     return request.post(config.api.MODIFY_CARD, {

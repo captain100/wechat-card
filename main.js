@@ -2,9 +2,16 @@ const WeChatCard = require('./index')
 const fs = require('fs')
 // 初试化设置
 WeChatCard.setConfig({
-  appId: 'wx577c00556617b6e6',
-  appSecret: 'e7578f5d676a280fda1925b077968505'
+  appId: 'wx7003da87224dd76a',
+  appSecret: 'c52a86f5511bd26cee0bed8e81119d97'
 })
+
+  // appId: 'wx577c00556617b6e6',
+  // appSecret: 'e7578f5d676a280fda1925b077968505'
+
+// lihao
+// wx7003da87224dd76a
+// c52a86f5511bd26cee0bed8e81119d97
 
 // 三方授权 access_token
 // WeChatCard.setConfig({
@@ -112,9 +119,9 @@ let cardinfo = {
 //   }).catch(e => console.log('查询失败', e))
 
 // 批量查询卡券状态
-// WeChatCard.card.batchGetCard(0, 10, [])
-//   .then(list => console.log('请求数据成功', list))
-//   .catch(e => console.log('请求数据失败', e))
+WeChatCard.card.batchGetCard(0, 50, ['CARD_STATUS_NOT_VERIFY'])
+  .then(list => console.log('请求数据成功', list))
+  .catch(e => console.log('请求数据失败', e))
 
 const updateCard = {
   cardId: 'phrZTw7GQ_dwdmhTreePOFSuJORo',
@@ -223,13 +230,18 @@ const updateCard = {
 //   .catch(e => console.log('修改失败', e))
 
 // 上传图片
-// fs.readFile('./123.png', (err, originBuffer) => {
-  // console.log(Buffer.isBuffer(originBuffer))
-  // console.log(originBuffer)
-  return WeChatCard.basic.uploadimg('./123.png')
+fs.readFile('./123.png', (err, originBuffer) => {
+  console.log(Buffer.isBuffer(originBuffer))
+  console.log(originBuffer)
+  return WeChatCard.basic.uploadimg('https://foli-cdn.app.xiaoyun.com/wxapp/image/1486453736591-0bc05cbf4fdd7a.jpg')
     .then(result => console.log('上传成功', result))
     .catch(e => console.log('上传失败', e))
-// })
+})
 
 // 得到颜色值
 // WeChatCard.basic.getColorList().then(result => console.log(result))
+
+// let _data = [1434008071, 1404896688, 'pjZ8Yt1XGILfi-FUsewpnnolGgZk', '123']
+// WeChatCard.basic.getSignature_1(_data)
+//   .then(result => console.log(11111, result))
+//   .catch(e => console.log(2222, e))

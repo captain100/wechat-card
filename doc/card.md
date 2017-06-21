@@ -1,8 +1,10 @@
 card.js 卡券管理
 ==============
 ## 向导
-- [createCard(card)](#createCard)
-
+- [createCard(card)](#createcardcard)
+- [getCardCode(card_id, code)](#getcardcode)
+- [modifyCard(card)](#modifycard)
+- [getUserCardList(options)]()
 
 ## 文档
 
@@ -114,4 +116,43 @@ card.js 卡券管理
     }
   }
 
+    WeChatCard.card.createCard(cardinfo)
+        .then(success => console.log('创建卡券成功', success))
+        .catch(e => console.log('创建卡券失败', e))
+
 ```
+=======
+#### modifyCard 
+>
+
+```javascript
+    WeChatCard.card.modifyCard(updateCard)
+    .then(result => console.log('修改成功', result))
+    .catch(e => console.log('修改失败', e))
+```
+========
+
+#### getCardCode
+> 查询code接口可以查询当前code是否可以被核销并检查code状态。当前可以被定位的状态为正常、已核销、转赠中、已删除、已失效和无效code
+
+
+```javascript
+
+/**
+ * 查询code接口可以查询当前code是否可以被核销并检查code状态。当前可以被定位的状态为正常、已核销、转赠中、已删除、已失效和无效code
+ * @param card_id 卡券ID代表一类卡券。自定义code卡券必填。
+ * @param code 单张卡券的唯一标准 (必填)
+ * @return {promise}
+ */
+
+ WeChat.card.getCardCode(card_id, code)
+    .then(result => console.log(result))
+    .catch(e => console.log(e)
+
+```
+=========
+#### getUserCardList
+
+
+
+

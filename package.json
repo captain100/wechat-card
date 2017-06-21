@@ -1,6 +1,6 @@
 {
   "name": "wechat-cards",
-  "version": "1.1.2",
+  "version": "1.2.2",
   "description": "微信卡券公用包",
   "main": "index.js",
   "scripts": {
@@ -16,8 +16,10 @@
     "koa-router": "^7.2.0",
     "koa-xml": "^1.0.2",
     "koa-xml-body": "^2.0.0",
+    "node-fetch": "^1.7.1",
     "promise": "^7.1.1",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "wechat-oauth": "^1.2.1"
   },
   "devDependencies": {},
   "repository": {

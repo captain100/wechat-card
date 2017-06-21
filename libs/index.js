@@ -1,7 +1,8 @@
 module.exports = {
   basic: require('./api/basic'),
   card: require('./api/card'),
-  event: require('./api/event'),
+  shop: require('./api/shop'),
+  delivery: require('./api/delivery'),
   memberCard: require('./api/memberCard'),
   setConfig: require('./config').setConfig,
   config: require('./config').setConfig
